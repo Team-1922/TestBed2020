@@ -14,6 +14,7 @@ import frc.robot.subsystems.ArmSubsystem;
 public class SpinOnceCommand extends CommandBase {
   private final ArmSubsystem m_subsystem;
   private int m_startEncoderPosition = 0;
+  private double m_rotationCount = 10.0;
   /**
    * Creates a new SpinOnceCommand.
    */
@@ -33,7 +34,8 @@ public class SpinOnceCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.drive(0.5);
+    double targetPos = m_startEncoderPosition + (4096 * m_rotationCount); // rotate 10 times
+    m_subsystem.driveToTarget(targetPos);
   }
 
   // Called once the command ends or is interrupted.
@@ -46,7 +48,7 @@ public class SpinOnceCommand extends CommandBase {
   @Override
   public boolean isFinished() {
     int encoderDistance = m_subsystem.getEncoder() - m_startEncoderPosition;
-    if(encoderDistance > Constants.ticksPerRevolution)
+    if(m_rotationCount * Constants.ticksPerRevolution - encoderDistance < Constants.ticksPerRevolution * 0.01)
     {
       return true;
     }
