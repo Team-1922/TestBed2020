@@ -16,11 +16,25 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int armTalon = 1;
+    public static final int armTalon = 2;
 
+    public static final double homingSpeed = 0.1;
     public static final int joystickPort = 0;
 
     public static final int ticksPerRevolution = 4096;
+    public static final int armTravel = 2420; //the max ticks the arm travels
+    public static final int softLimitsStart = -100; // ten ticks off the 
+    public static final int softLimitsEnd = -armTravel + 100; // ten ticks off the 
 
+    public static final int XBoxAButton = 1;
+    public static final int XBoxBButton = 2;
+    public static final int XBoxXButton = 3;
     public static final int XBoxYButton = 4;
+    public static final int XBoxLBumper = 5;
+    public static final int XBoxRBumper = 6;
+
+    public static final double maxTOFShortModeRange = 2000.0; //millimeters
+
+    public static final int servoChannel = 0;
+
 }
